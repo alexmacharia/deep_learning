@@ -20,7 +20,7 @@ for img in not_dog_path.glob("*.png"):
     # Convert image to array
     img_array = img_to_array(img)
 
-    Add image to list of images
+    # Add image to list of images
     images.append(img_array)
 
     # Add label 0 for not dog
