@@ -23,6 +23,21 @@ image_array = img_to_array(img)
 # Add fourth dimension to the image
 images = np.expand_dims(image_array, axis=0)
 
+# Normalize the data
+images = vgg16.preprocess_input(images)
+
+# Extract features from test image the same as in training
+feature_extraction_model = vgg16.VGG16(weights='imagenet', include_top=False, input_shape=(64, 64, 3))
+features = feature_extraction_model.predict(images)
+
+# Make prediction
+results = model.predict(features)
+
+# Check first result of first element
+single_result = results[0][0]
+
+# Print the result
+print("Likelihood that the image contains a dog: {}%".format(int(single_result * 100)))
 
 
 
